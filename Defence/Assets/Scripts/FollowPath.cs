@@ -11,6 +11,7 @@ public class FollowPath : MonoBehaviour
     private Vector2 EnemyPos;
     private float speedModifier;
     private bool coroutineAllowed;
+    
 
     // Start is called before the first frame update
     void Start()

@@ -11,6 +11,7 @@ public class SpawnEnemy : MonoBehaviour
     public float spawnDelay;
     public int MaxSpawn;
     public int CurrentSpawned;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +25,8 @@ public class SpawnEnemy : MonoBehaviour
         {
             Instantiate(spawnee, transform.position, transform.rotation);
             ++CurrentSpawned;
+            PlayerPrefs.SetInt("RoundSpawnCount", PlayerPrefs.GetInt("RoundSpawnCount") + 1);
+            PlayerPrefs.SetInt("Spawned1", 1);
         }
         else
         {
