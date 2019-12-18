@@ -29,6 +29,7 @@ public class DragTower : MonoBehaviour
 
     private void OnMouseDown()
     {
+        
         if (!Locked)
         {
             deltax = Camera.main.ScreenToWorldPoint(Input.mousePosition).x - transform.position.x;

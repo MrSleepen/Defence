@@ -5,7 +5,7 @@ using UnityEngine;
 public class ArcherTower : MonoBehaviour
 {
     public int AttackPower = 3;
-    public GameObject AttackRange;
+    
     private int AttackSpeed = 2;
     public bool Shoot = false;
     public GameObject target;
