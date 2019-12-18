@@ -14,7 +14,9 @@ public class Enemy1 : MonoBehaviour
     public int MoneyLoc;
     public int MoneyBase = 10;
     public int MoneyMult;
+    public Animator Enemy1anim;
     
+  
     
     
 
@@ -34,7 +36,7 @@ public class Enemy1 : MonoBehaviour
        
         MoneyMult = MoneyBase + (PlayerPrefs.GetInt("RoundNum") / 2); 
         DollerPK = PlayerPrefs.GetInt("RoundNum") * CreatureMultiplier;
-        Debug.Log(Health);
+        //Debug.Log(Health);
         //Debug.Log(PlayerPrefs.GetInt("Money"));
         //Debug.Log(DollerPK);
         if (Health <= 0)
@@ -53,9 +55,8 @@ public class Enemy1 : MonoBehaviour
                 Dieing = false;
                 StartCoroutine(Death());
             }
-        
 
-        
+
     }
     //Damage Called from tower script upon Hit
     public void Damage(int Dam)
@@ -66,10 +67,12 @@ public class Enemy1 : MonoBehaviour
     //Run When Health =0a
     IEnumerator Death()
     {
+        Enemy1anim.SetBool("Alive", false);
+        yield return new WaitForSeconds(.5f);
         PlusMoney(e:MoneyMult) ;
         PlayerPrefs.SetInt("Money", CurrentMoney);
         Destroy(This);
-        yield return new WaitForSeconds(.5f);
+        
         
 
     }
@@ -78,8 +81,10 @@ public class Enemy1 : MonoBehaviour
 
         if (other.gameObject.tag == "Base")
         {
+            
+            Enemy1anim.SetBool("IsAttacking", true);
             PlayerPrefs.SetInt("BaseHealth", PlayerPrefs.GetInt("BaseHealth") - Attack);
-            Destroy(This);
+            //Destroy(This);
         }
     }
     public void PlusMoney(int e)
