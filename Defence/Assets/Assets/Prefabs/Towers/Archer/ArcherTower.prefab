@@ -103,7 +103,6 @@ GameObject:
   - component: {fileID: 2637096575034173351}
   - component: {fileID: 2637096575034173350}
   - component: {fileID: 2637096575034173348}
-  - component: {fileID: 2637096575034173349}
   m_Layer: 0
   m_Name: ArcherTower
   m_TagString: Untagged
@@ -160,27 +159,3 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 4.82, y: 4.08, z: 4.44}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2637096575034173349
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2637096575034173353}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 540449fff553f9a42887140fbdf0d6dc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SnapLoc1:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  Tower: {fileID: 0}
-  ChosenSnapPoint: 0
-  test: 1
