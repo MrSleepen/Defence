@@ -19,16 +19,13 @@ public class GameManager : MonoBehaviour
             return _Instance;
         }
     }
- 
+      //public bool Overlapping = false;
 
     void Awake()
     {
         _Instance = this;
     }
-
-    private void Start()
-    {
-       
-    }
+    
+    
 
 }

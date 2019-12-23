@@ -7,32 +7,40 @@ public class DropUI : MonoBehaviour
 {
     public GameObject Tower;
     public GameObject UIOBJ;
+    public GameObject DisappearPanel;
+    public GameObject ReappearPanel;
+    public GameObject Snappoint;
     public RectTransform TowerPanel;
     private bool dragging;
     public bool playableArea = false;
-    private Vector3 Startpos;
+   
     Vector3 mousePos;
 
 
     public void Awake()
     {
-        Startpos = transform.position;
+        
     }
 
     public void Update()
     {
+      
         mousePos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0f);
         if (dragging)
         {
             UIOBJ.transform.position = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
         }
+        else
+        {
+            UIOBJ.transform.position = Snappoint.transform.position;
+        }
     }
 
     public void MouseD()
     {
+        
         dragging = true;
-        TowerPanel.transform.localScale= new Vector3(0, 0, 0);
-        //GetComponent<CanvasGroup>().blocksRaycasts = false;
+        TowerPanel.transform.position = DisappearPanel.transform.position;
 
     }
 
@@ -40,7 +48,7 @@ public class DropUI : MonoBehaviour
     {
         dragging = false;
 
-        TowerPanel.transform.localScale = new Vector3(1, 1, 1);
+        
 
         if (!RectTransformUtility.RectangleContainsScreenPoint(TowerPanel, Input.mousePosition))
         {
@@ -52,13 +60,20 @@ public class DropUI : MonoBehaviour
                 wordPos = hit.point;
                 wordPos.z = 0;
             }
+            
             else
             {
                 wordPos = Camera.main.ScreenToWorldPoint(mousePos);
                 wordPos.z = 0;
             }
-            Instantiate(Tower, wordPos, Quaternion.identity);
-            //or for tandom rotarion use Quaternion.LookRotation(Random.insideUnitSphere)
+          
+            
+                Instantiate(Tower, wordPos, Quaternion.identity);
+         
+            
+
+            TowerPanel.transform.position = ReappearPanel.transform.position;
+           
         }
     }
 
