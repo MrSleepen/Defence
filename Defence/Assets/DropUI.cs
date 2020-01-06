@@ -2,18 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class DropUI : MonoBehaviour
 {
-    public GameObject Tower;
-    public GameObject UIOBJ;
+    public GameObject[] Tower;
+    
+    public GameObject[] UIOBJ;
     public GameObject DisappearPanel;
     public GameObject ReappearPanel;
     public GameObject Snappoint;
     public RectTransform TowerPanel;
     private bool dragging;
     public bool playableArea = false;
-   
+    private int Selectedtower;
+    
     Vector3 mousePos;
 
 
@@ -24,24 +27,42 @@ public class DropUI : MonoBehaviour
 
     public void Update()
     {
-      
+//Mouse over GO////////////
+        RaycastHit hit;
         mousePos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0f);
-        if (dragging)
+
+        Ray ray = Camera.main.ScreenPointToRay(mousePos);
+        if(Physics.Raycast(ray, out hit, 100.0f))
         {
-            UIOBJ.transform.position = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+            if(hit.transform != null)
+            {
+                PrintName(hit.transform.gameObject);
+            }
         }
-        else
-        {
-            UIOBJ.transform.position = Snappoint.transform.position;
-        }
+///////////////////////////
+///
+
+        
+
+            if (dragging)
+            {
+                UIOBJ[Selectedtower].transform.position = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+            }
+            else
+            {
+                UIOBJ[Selectedtower].transform.position = Snappoint.transform.position;
+            }
+        
     }
 
     public void MouseD()
-    {
-        
-        dragging = true;
-        TowerPanel.transform.position = DisappearPanel.transform.position;
-
+    {      if(ismouseoverui())
+        {
+            Debug.Log("Works");
+            dragging = true;
+            TowerPanel.transform.position = DisappearPanel.transform.position; 
+        }
+           
     }
 
     public  void MouseUP()
@@ -68,7 +89,7 @@ public class DropUI : MonoBehaviour
             }
           
             
-                Instantiate(Tower, wordPos, Quaternion.identity);
+                Instantiate(Tower[Selectedtower], wordPos, Quaternion.identity);
          
             
 
@@ -76,6 +97,14 @@ public class DropUI : MonoBehaviour
            
         }
     }
-
+    public void PrintName(GameObject go)
+    {
+        print(go.name);
+    }
     
+    private bool ismouseoverui()
+    {
+        return EventSystem.current.IsPointerOverGameObject();
+    }
+
 }
