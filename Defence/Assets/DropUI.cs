@@ -11,7 +11,7 @@ public class DropUI : MonoBehaviour
     public GameObject[] UIOBJ;
     public GameObject DisappearPanel;
     public GameObject ReappearPanel;
-    public GameObject Snappoint;
+    public GameObject[] Snappoint;
     public RectTransform TowerPanel;
     private bool dragging;
     public bool playableArea = false;
@@ -36,33 +36,55 @@ public class DropUI : MonoBehaviour
         {
             if(hit.transform != null)
             {
-                PrintName(hit.transform.gameObject);
+                //PrintName(hit.transform.gameObject);
             }
         }
-///////////////////////////
-///
+        ///////////////////////////
+        ///
 
-        
+      
 
-            if (dragging)
+
+        if (dragging)
             {
                 UIOBJ[Selectedtower].transform.position = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
             }
             else
             {
-                UIOBJ[Selectedtower].transform.position = Snappoint.transform.position;
+                UIOBJ[Selectedtower].transform.position = Snappoint[Selectedtower].transform.position;
             }
         
     }
 
     public void MouseD()
-    {      if(ismouseoverui())
+    {
+        PointerEventData pointer = new PointerEventData(EventSystem.current);
+        pointer.position = Input.mousePosition;
+
+        List<RaycastResult> raycastResults = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(pointer, raycastResults);
+
+        if (raycastResults.Count > 0)
         {
-            Debug.Log("Works");
-            dragging = true;
-            TowerPanel.transform.position = DisappearPanel.transform.position; 
+            foreach (var go in raycastResults)
+            {
+
+                Debug.Log(go.gameObject.name, go.gameObject);
+                if (go.gameObject.name == "ArcherTower")
+                {
+                    Selectedtower = 0;
+                    
+                }
+                if (go.gameObject.name == "RockTower")
+                {
+                   Selectedtower = 1;
+                }
+            }
         }
-           
+
+        dragging = true;
+            TowerPanel.transform.position = DisappearPanel.transform.position; 
+     
     }
 
     public  void MouseUP()

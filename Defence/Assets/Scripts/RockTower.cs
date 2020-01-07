@@ -26,7 +26,7 @@ public class RockTower : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("WOWZA");
+        
         //Debug.Log(PlayerPrefs.GetInt("CurExpt1"));
         vLevel = PlayerPrefs.GetInt("BaseLevelt1");
         vExpLeft = PlayerPrefs.GetInt("ExpLeftt1");
@@ -37,7 +37,7 @@ public class RockTower : MonoBehaviour
     {
         if (other.gameObject.tag == "Enemy")
         {
-            Debug.Log("WOWZA");
+            
             if (Shoot == false)
             {
                 Shoot = true;
