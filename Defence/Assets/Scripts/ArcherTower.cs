@@ -19,6 +19,10 @@ public class ArcherTower : MonoBehaviour
     public int vExpLeft = 10;
     public float vExpMod = 1.15f;
 
+ 
+    public Animator Archer;
+    public SpriteRenderer ArcherRend;
+
 
     // Start is called before the first frame update
 
@@ -30,6 +34,9 @@ public class ArcherTower : MonoBehaviour
         vLevel = PlayerPrefs.GetInt("BaseLevelt1");
         vExpLeft = PlayerPrefs.GetInt("ExpLeftt1");
         vCurrExp = PlayerPrefs.GetInt("CurExpt1");
+        
+
+        FaceThatWay();
     }
 
     void OnTriggerStay(Collider other)
@@ -43,8 +50,11 @@ public class ArcherTower : MonoBehaviour
                 if (target == null)
                 {
                     target = other.gameObject;
+                    Archer.SetBool("Hastarget", true);
+                    
                 }
-
+               
+                
                 StartCoroutine(Fire());
             }
         }
@@ -52,9 +62,11 @@ public class ArcherTower : MonoBehaviour
     }
     void OnTriggerExit(Collider other) 
     { 
-        if (other.gameObject.tag == "Enemy"&& target)
+        if (other.gameObject.tag == "Enemy" && target)
         {    
                 target = null;
+            Archer.SetBool("Hastarget", false);
+            
         }
 
     }
@@ -79,6 +91,32 @@ public class ArcherTower : MonoBehaviour
 
             Shoot = false;
 
+        }
+    }
+
+    public void FaceThatWay()
+    {
+        if (target) 
+        
+        { 
+            if(target.transform.position.y > transform.position.y)
+            {
+                Archer.SetBool("IsBehind", true);
+            }
+            else
+            {
+                Archer.SetBool("IsBehind", false);
+            }      
+            if (target.transform.position.x > transform.position.x)    
+            {           
+                ArcherRend.flipX = false;   
+            }       
+            else      
+            {          
+                ArcherRend.flipX = true;
+            }
+
+       
         }
     }
 

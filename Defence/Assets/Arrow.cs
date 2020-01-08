@@ -23,7 +23,7 @@ public class Arrow : MonoBehaviour
        
         if(target == null)
         {
-            Debug.Log("null");
+            
             Destroy(ArrowPrefab);
            
             return;
