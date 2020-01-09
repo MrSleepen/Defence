@@ -19,6 +19,8 @@ public class RockTower : MonoBehaviour
     public int vExpLeft = 10;
     public float vExpMod = 1.15f;
 
+    public GameObject Slider;
+
 
     // Start is called before the first frame update
 
@@ -57,6 +59,7 @@ public class RockTower : MonoBehaviour
         if (other.gameObject.tag == "Enemy" && target)
         {
             target = null;
+            Shoot = false;
         }
 
     }
@@ -85,9 +88,20 @@ public class RockTower : MonoBehaviour
         }
     }
 
-    #region Leveling
-    //leveling methods
-    public void GainExp(int e)
+    IEnumerator Fireanim()
+    {
+
+        if (Shoot == true)
+        {
+           
+        }
+
+        yield return new WaitForSeconds(AttackSpeed);
+
+    }
+        #region Leveling
+        //leveling methods
+        public void GainExp(int e)
     {
         PlayerPrefs.SetInt("CurExpt1", vCurrExp + e);
         if (PlayerPrefs.GetInt("CurExpt1") >= vExpLeft)

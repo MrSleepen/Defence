@@ -18,8 +18,9 @@ public class ArcherTower : MonoBehaviour
     public int vExpBase = 10;
     public int vExpLeft = 10;
     public float vExpMod = 1.15f;
-
- 
+    
+    
+    //private float animSpeed = 0.5f;
     public Animator Archer;
     public SpriteRenderer ArcherRend;
 
@@ -30,6 +31,13 @@ public class ArcherTower : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Make all animations in this character play at half speed
+
+
+
+
+        //Archer.speed = animSpeed;
+
         //Debug.Log(PlayerPrefs.GetInt("CurExpt1"));
         vLevel = PlayerPrefs.GetInt("BaseLevelt1");
         vExpLeft = PlayerPrefs.GetInt("ExpLeftt1");
@@ -55,7 +63,7 @@ public class ArcherTower : MonoBehaviour
                 }
                
                 
-                StartCoroutine(Fire());
+                //StartCoroutine(Fire());
             }
         }
 
@@ -120,9 +128,11 @@ public class ArcherTower : MonoBehaviour
         }
     }
 
-    #region Leveling
-    //leveling methods
-    public void GainExp(int e)
+ 
+
+        #region Leveling
+        //leveling methods
+        public void GainExp(int e)
     {
         PlayerPrefs.SetInt("CurExpt1", vCurrExp + e);
         if (PlayerPrefs.GetInt("CurExpt1") >= vExpLeft)
