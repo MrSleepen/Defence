@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RockTower : MonoBehaviour
+public class MagicTowers : MonoBehaviour
 {
 
 
-    private int AttackSpeed = 1;
+    private int AttackSpeed = 2;
     public bool Shoot = false;
     public GameObject target;
-    public GameObject RockPrefab;
+    public GameObject ArrowPrefab;
     public Transform FirePointPos;
 
     public int vLevel = 1;
@@ -19,106 +19,97 @@ public class RockTower : MonoBehaviour
     public int vExpLeft = 10;
     public float vExpMod = 1.15f;
 
-    public GameObject Slider;
+    public GameObject Absorb;
+    public ParticleSystem Burst;
     
     
+   
 
-
-    // Start is called before the first frame update
 
 
     // Update is called once per frame
     void Update()
     {
+       
+        //Archer.speed = animSpeed;
+
         vLevel = PlayerPrefs.GetInt("BaseLevelt1");
         vExpLeft = PlayerPrefs.GetInt("ExpLeftt1");
         vCurrExp = PlayerPrefs.GetInt("CurExpt1");
-        if (target == null)
+        
+        if(target != null)
         {
-            Slider.GetComponent<Animator>().SetBool("FireBool", false);
-            Shoot = false;
+            Absorb.SetActive(true);
         }
+       
+        
+
     }
 
     void OnTriggerStay(Collider other)
     {
         if (other.gameObject.tag == "Enemy")
+           
         {
-            
+
             if (Shoot == false)
             {
                 Shoot = true;
+                
 
                 if (target == null)
                 {
                     target = other.gameObject;
+                            
                 }
-
-                Slider.GetComponent<Animator>().SetBool("FireBool", true);
+             StartCoroutine(Fire());
             }
         }
 
     }
-    void OnTriggerExit(Collider other)
-    {
+    void OnTriggerExit(Collider other) 
+    { 
         if (other.gameObject.tag == "Enemy" && target)
-        {
-            target = null;
-            Shoot = false;
-            Slider.GetComponent<Animator>().SetBool("FireBool", false);
+        {    
+                target = null;
+             
+
+
         }
 
     }
 
 
-    public IEnumerator Fire()
+    IEnumerator Fire()
     {
+      
 
-        Debug.Log(Shoot);
-        if (Shoot == true && target!=null)
-        {
-            
-
+        if (Shoot == true) {
+            Debug.Log("Fire");
             //target.GetComponent<Enemy1>().Damage(Dam:AttackPower) ;
-            GameObject RockObj = (GameObject)Instantiate(RockPrefab, FirePointPos.position, FirePointPos.rotation);
-            Rock rock = RockObj.GetComponent<Rock>();
+            GameObject ArrowObj = (GameObject)Instantiate(ArrowPrefab, FirePointPos.position, FirePointPos.rotation);
+            Arrow arrow = ArrowObj.GetComponent<Arrow>();
+           
 
+            if (arrow != null)
 
-            if (rock != null)
             {
-                rock.Seek(target.transform);
+                
+                Burst.Play();
+                arrow.Seek(target.transform);
             }
-
             
-
             yield return new WaitForSeconds(AttackSpeed);
+
             Shoot = false;
 
             
-            
 
         }
     }
 
-    public void Shootdat()
-    {
     
-        StartCoroutine(Fire()); 
-    }
-
-    IEnumerator Fireanim()
-    {
-
-        if (Shoot == true)
-        {
-           
-        }
-
-        yield return new WaitForSeconds(AttackSpeed);
-
-    }
-
-    
+ 
 
         #region Leveling
         //leveling methods

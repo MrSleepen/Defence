@@ -241,7 +241,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3050014702594675868}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.76, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7141168912455554568}
@@ -320,7 +320,6 @@ MonoBehaviour:
   vExpLeft: 10
   vExpMod: 1.15
   Slider: {fileID: 1051767288}
-  Fired: 0
 --- !u!212 &558864694
 SpriteRenderer:
   m_ObjectHideFlags: 0

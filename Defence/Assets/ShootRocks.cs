@@ -9,6 +9,7 @@ public class ShootRocks : MonoBehaviour
 
     public void Fire()
     {
-        Rocktower.GetComponent<RockTower>().Fired = true;
+        Rocktower.GetComponent<RockTower>().Shootdat();
+      
     }
 }

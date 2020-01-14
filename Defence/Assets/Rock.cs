@@ -13,13 +13,13 @@ public class Rock : MonoBehaviour
 
     public void Seek(Transform _target)
     {
+        if(_target != null) 
+        { 
         target = _target;
+        }
     }
     void Update()
     {
-
-
-
 
         if (target == null)
         {
