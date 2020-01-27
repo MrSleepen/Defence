@@ -79,6 +79,22 @@ public class DropUI : MonoBehaviour
                 {
                    Selectedtower = 1;
                 }
+                if (go.gameObject.name == "FireTower")
+                {
+                    Selectedtower = 2;
+                }
+                if (go.gameObject.name == "IceTower")
+                {
+                    Selectedtower = 3;
+                }
+                if (go.gameObject.name == "LightTower")
+                {
+                    Selectedtower = 4;
+                }
+                if (go.gameObject.name == "DarkTower")
+                {
+                    Selectedtower = 5;
+                }
             }
         }
 

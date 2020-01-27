@@ -1538,8 +1538,7 @@ ParticleSystem:
     uvChannelMask: -1
     rowMode: 1
     sprites:
-    - sprite: {fileID: 3625925719576792361, guid: 83c6b7ae44327764b974aeb449c38423,
-        type: 3}
+    - sprite: {fileID: 21300000, guid: 71f3536756debb94ca2974677128751c, type: 3}
     flipU: 0
     flipV: 0
   VelocityModule:
@@ -4855,7 +4854,7 @@ GameObject:
   - component: {fileID: 5435393773705454446}
   - component: {fileID: 209118554}
   m_Layer: 0
-  m_Name: MagicTowerFire
+  m_Name: IceTower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4928,7 +4927,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -6304789891797481106, guid: 86b1e753a8fabf24b9b695301516d081,
+  m_Sprite: {fileID: 8143977839265071909, guid: 86b1e753a8fabf24b9b695301516d081,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -4954,7 +4953,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Shoot: 0
   target: {fileID: 0}
-  ArrowPrefab: {fileID: 5190187240563263207, guid: ce860108f31fc0842974fb97f7c3844a,
+  ArrowPrefab: {fileID: 5190187240563263207, guid: 96e16773f853c5448b9f8e3bba901acb,
     type: 3}
   FirePointPos: {fileID: 5435393773106367723}
   vLevel: 1
@@ -4964,5 +4963,3 @@ MonoBehaviour:
   vExpLeft: 10
   vExpMod: 1.15
   Burst: {fileID: 37646549}
-  LightningBurst: []
-  TowerGOActive: 0

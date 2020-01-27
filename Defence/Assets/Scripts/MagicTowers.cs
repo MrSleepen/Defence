@@ -19,8 +19,13 @@ public class MagicTowers : MonoBehaviour
     public int vExpLeft = 10;
     public float vExpMod = 1.15f;
 
-    public GameObject Absorb;
+    
     public ParticleSystem Burst;
+
+    public GameObject[] LightningBurst;
+    public bool TowerGOActive;
+    private int PartActive;
+
     
     
    
@@ -39,7 +44,83 @@ public class MagicTowers : MonoBehaviour
         
         if(target != null)
         {
-            Absorb.SetActive(true);
+            
+        }
+
+        if (TowerGOActive)
+        {
+            PartActive = Random.Range(1, 10);
+            if(PartActive == 1)
+            {
+                LightningBurst[1].SetActive(true);
+                LightningBurst[2].SetActive(false);
+                LightningBurst[3].SetActive(false);
+                LightningBurst[4].SetActive(false);
+                LightningBurst[5].SetActive(false);
+                LightningBurst[6].SetActive(false);
+                LightningBurst[7].SetActive(false);
+            }
+            if (PartActive == 2)
+            {
+                LightningBurst[1].SetActive(false);
+                LightningBurst[2].SetActive(true);
+                LightningBurst[3].SetActive(false);
+                LightningBurst[4].SetActive(false);
+                LightningBurst[5].SetActive(false);
+                LightningBurst[6].SetActive(false);
+                LightningBurst[7].SetActive(false);
+            }
+            if (PartActive == 3)
+            {
+                LightningBurst[1].SetActive(false);
+                LightningBurst[2].SetActive(false);
+                LightningBurst[3].SetActive(true);
+                LightningBurst[4].SetActive(false);
+                LightningBurst[5].SetActive(false);
+                LightningBurst[6].SetActive(false);
+                LightningBurst[7].SetActive(false);
+            }
+            if (PartActive == 4)
+            {
+                LightningBurst[1].SetActive(false);
+                LightningBurst[2].SetActive(false);
+                LightningBurst[3].SetActive(false);
+                LightningBurst[4].SetActive(true);
+                LightningBurst[5].SetActive(false);
+                LightningBurst[6].SetActive(false);
+                LightningBurst[7].SetActive(false);
+            }
+            if (PartActive == 5)
+            {
+                LightningBurst[1].SetActive(false);
+                LightningBurst[2].SetActive(false);
+                LightningBurst[3].SetActive(false);
+                LightningBurst[4].SetActive(false);
+                LightningBurst[5].SetActive(true);
+                LightningBurst[6].SetActive(false);
+                LightningBurst[7].SetActive(false);
+            }
+            if (PartActive == 6)
+            {
+                LightningBurst[1].SetActive(false);
+                LightningBurst[2].SetActive(false);
+                LightningBurst[3].SetActive(false);
+                LightningBurst[4].SetActive(false);
+                LightningBurst[5].SetActive(false);
+                LightningBurst[6].SetActive(true);
+                LightningBurst[7].SetActive(false);
+            }
+            if (PartActive == 7)
+            {
+                LightningBurst[1].SetActive(false);
+                LightningBurst[2].SetActive(false);
+                LightningBurst[3].SetActive(false);
+                LightningBurst[4].SetActive(false);
+                LightningBurst[5].SetActive(false);
+                LightningBurst[6].SetActive(false);
+                LightningBurst[7].SetActive(true);
+            }
+
         }
        
         
@@ -72,7 +153,9 @@ public class MagicTowers : MonoBehaviour
         if (other.gameObject.tag == "Enemy" && target)
         {    
                 target = null;
-             
+                
+
+
 
 
         }
