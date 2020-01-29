@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4612195789528570825}
   - component: {fileID: 1240856200}
   - component: {fileID: 1240856199}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Enemy (1)
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -108,7 +108,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  Numofpath: 0
+  Numofpath: 2
   Original: 1
 --- !u!212 &1240856200
 SpriteRenderer:
