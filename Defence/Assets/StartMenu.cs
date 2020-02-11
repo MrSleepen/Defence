@@ -7,6 +7,6 @@ public class StartMenu : MonoBehaviour
 {
    public void PressedButton()
     {
-        SceneManager.LoadScene("Level1");
+        SceneManager.LoadScene("MainSelection Menu");
     }
 }

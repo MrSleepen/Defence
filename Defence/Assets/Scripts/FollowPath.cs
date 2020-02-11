@@ -7,7 +7,11 @@ public class FollowPath : MonoBehaviour
     private Transform[] route1;
     [SerializeField]
     private Transform[] route2;
-    
+    [SerializeField]
+    private Transform[] route3;
+    [SerializeField]
+    private Transform[] route4;
+
     public int Numofpath;
 
     private int routeToGo;
@@ -46,6 +50,14 @@ void Awake()
             if (coroutineAllowed && Numofpath == 2)
             {
                 StartCoroutine(GoByTheRoute2(routeToGo));
+            }
+            if (coroutineAllowed && Numofpath == 3)
+            {
+                StartCoroutine(GoByTheRoute3(routeToGo));
+            }
+            if (coroutineAllowed && Numofpath == 4)
+            {
+                StartCoroutine(GoByTheRoute4(routeToGo));
             }
 
 
@@ -136,6 +148,89 @@ void Awake()
         coroutineAllowed = true;
     }
 
+    private IEnumerator GoByTheRoute3(int routeNumber)
+    {
+        coroutineAllowed = false;
+
+
+        Vector2 theScale = transform.localScale;
+        Vector2 p0 = route3[routeNumber].GetChild(0).position;
+        Vector2 p1 = route3[routeNumber].GetChild(1).position;
+        Vector2 p2 = route3[routeNumber].GetChild(2).position;
+        Vector2 p3 = route3[routeNumber].GetChild(3).position;
+
+
+
+        if (p0.x > p3.x)
+        {
+            mySpriteRenderer.flipX = true;
+        }
+        else
+        {
+            //Movig Right
+
+        }
+
+        while (tParam < 1)
+        {
+            tParam += Time.deltaTime * speedModifier;
+
+            EnemyPos = Mathf.Pow(1 - tParam, 3) * p0 + 3 * Mathf.Pow(1 - tParam, 2) * tParam * p1 + 3 * (1 - tParam) * Mathf.Pow(tParam, 2) * p2 + Mathf.Pow(tParam, 3) * p3;
+
+            transform.position = EnemyPos;
+            yield return new WaitForEndOfFrame();
+        }
+        tParam = 0f;
+
+        routeToGo += 1;
+
+        if (routeToGo > route3.Length - 1)
+            routeToGo = 0;
+
+        coroutineAllowed = true;
+    }
+
+    private IEnumerator GoByTheRoute4(int routeNumber)
+    {
+        coroutineAllowed = false;
+
+
+        Vector2 theScale = transform.localScale;
+        Vector2 p0 = route4[routeNumber].GetChild(0).position;
+        Vector2 p1 = route4[routeNumber].GetChild(1).position;
+        Vector2 p2 = route4[routeNumber].GetChild(2).position;
+        Vector2 p3 = route4[routeNumber].GetChild(3).position;
+
+
+
+        if (p0.x > p3.x)
+        {
+            mySpriteRenderer.flipX = true;
+        }
+        else
+        {
+            //Movig Right
+
+        }
+
+        while (tParam < 1)
+        {
+            tParam += Time.deltaTime * speedModifier;
+
+            EnemyPos = Mathf.Pow(1 - tParam, 3) * p0 + 3 * Mathf.Pow(1 - tParam, 2) * tParam * p1 + 3 * (1 - tParam) * Mathf.Pow(tParam, 2) * p2 + Mathf.Pow(tParam, 3) * p3;
+
+            transform.position = EnemyPos;
+            yield return new WaitForEndOfFrame();
+        }
+        tParam = 0f;
+
+        routeToGo += 1;
+
+        if (routeToGo > route4.Length - 1)
+            routeToGo = 0;
+
+        coroutineAllowed = true;
+    }
     void OnTriggerEnter(Collider other)
     {
 
