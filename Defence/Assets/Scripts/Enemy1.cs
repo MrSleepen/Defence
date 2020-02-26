@@ -7,21 +7,14 @@ public class Enemy1 : MonoBehaviour
     private bool Dieing = false;
     public int Health;
     public GameObject This;
-    public int CurrentMoney;
-    public int DollerPK = 1;
     public int CreatureMultiplier = 1;
     public int Attack = 1;
-    public int MoneyLoc;
-    public int MoneyBase = 10;
-    public int MoneyMult;
     public Animator Enemy1anim;
+    private bool AttackAnimating;
+    public int CreatureWorth;
+    public int IndependentVariable;
     
-  
     
-    
-
-
-
 
     // Start is called before the first frame update
 
@@ -32,36 +25,25 @@ public class Enemy1 : MonoBehaviour
     }
     // Update is called once per frame
     void Update()
+      
     {
-       
-        MoneyMult = MoneyBase + (PlayerPrefs.GetInt("RoundNum") / 2); 
-        DollerPK = PlayerPrefs.GetInt("RoundNum") * CreatureMultiplier;
-        //Debug.Log(Health);
-        //Debug.Log(PlayerPrefs.GetInt("Money"));
-        //Debug.Log(DollerPK);
-        if (Health <= 0)
-        {
-            Dieing = true;
-        }
-
-        //Current Money is always higher than the actualy amount
-        CurrentMoney = PlayerPrefs.GetInt("Money") + DollerPK;
-
         
-        //If Dieing Start Death() Coroutine
-        if (Dieing == true)
-            {
-            PlayerPrefs.SetInt("RoundDeathCount", PlayerPrefs.GetInt("RoundDeathCount") + 1);
-                Dieing = false;
-                StartCoroutine(Death());
+        CreatureWorth = 10 + PlayerPrefs.GetInt("RoundNum") * IndependentVariable;
+
+            if (Health <= 0)
+            {   
+                Dieing = true;
             }
-
-
+            //If Dieing Start Death() Coroutine  
+            if (Dieing == true)
+            {     
+                Dieing = false;    
+                StartCoroutine(Death());          
+            }
     }
     //Damage Called from tower script upon Hit
     public void Damage(int Dam)
-    {
-        //Debug.Log("aqhahahhahahahhahahahhah");
+    {   
         Health -= Dam;
     }
     //Run When Health =0a
@@ -69,27 +51,26 @@ public class Enemy1 : MonoBehaviour
     {
         Enemy1anim.SetBool("Alive", false);
         yield return new WaitForSeconds(.5f);
-        PlusMoney(e:MoneyMult) ;
-        PlayerPrefs.SetInt("Money", CurrentMoney);
+        PlayerPrefs.SetInt("KilledCreatures", PlayerPrefs.GetInt("KilledCreatures") + 1);
+        PlayerPrefs.SetInt("CurMoneyt1", PlayerPrefs.GetInt("CurMoneyt1") + CreatureWorth); 
         Destroy(This);
-        
-        
-
     }
-    void OnTriggerEnter(Collider other)
+    void OnTriggerStay(Collider other)
     {
 
-        if (other.gameObject.tag == "Base")
+        if (other.gameObject.tag == "Base" && AttackAnimating == false)
         {
-            
             Enemy1anim.SetBool("IsAttacking", true);
-            PlayerPrefs.SetInt("BaseHealth", PlayerPrefs.GetInt("BaseHealth") - Attack);
+            StartCoroutine(AttackEnum());
             //Destroy(This);
         }
     }
-    public void PlusMoney(int e)
-    {
-        MoneyLoc = PlayerPrefs.GetInt("CurMoney") + e;
-        PlayerPrefs.SetInt("CurMoney", MoneyLoc);
+
+    IEnumerator AttackEnum()
+    { 
+        yield return new WaitForSeconds(.5f);
+        PlayerPrefs.SetInt("BaseHealth", PlayerPrefs.GetInt("BaseHealth") - Attack);
+        AttackAnimating = false;
     }
+  
 }

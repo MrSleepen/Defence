@@ -36,7 +36,7 @@ public class DropUI : MonoBehaviour
         {
             if(hit.transform != null)
             {
-                //PrintName(hit.transform.gameObject);
+                PrintName(hit.transform.gameObject);
             }
         }
         ///////////////////////////

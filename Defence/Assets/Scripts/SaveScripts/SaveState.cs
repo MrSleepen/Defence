@@ -13,6 +13,7 @@ public class SaveState
     public int ExpLeft;
     public int CurExp;
     public int CurMoney;
+    public int KilledCreatures;
 
     //tower1
     public int BaseHealtht1;

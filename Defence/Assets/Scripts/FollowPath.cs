@@ -21,9 +21,10 @@ public class FollowPath : MonoBehaviour
     private bool coroutineAllowed;
     private SpriteRenderer mySpriteRenderer;
     public bool Original = true;
+    public GameObject This;
 
 
-void Awake()
+    void Awake()
     {
         mySpriteRenderer = GetComponent<SpriteRenderer>();
         Numofpath = Random.Range(1,Numofpath + 1);
@@ -41,6 +42,7 @@ void Awake()
     // Update is called once per frame
     void Update()
     {
+        BaseDestroyed();
         if (!Original)
         {
             if (coroutineAllowed && Numofpath ==1)
@@ -242,5 +244,12 @@ void Awake()
     public void NotOriginal()
     {
         Original = false;
+    }
+
+    void BaseDestroyed()
+    {
+        if (Original == false && PlayerPrefs.GetInt("BaseHealth") <= 0){
+            Destroy(This);
+        }
     }
 }

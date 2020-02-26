@@ -59,10 +59,8 @@ public class ArcherTower : MonoBehaviour
                 {
                     target = other.gameObject;
                     Archer.SetBool("Hastarget", true);
-                    
                 }
-               
-                
+
                 //StartCoroutine(Fire());
             }
         }
@@ -73,28 +71,21 @@ public class ArcherTower : MonoBehaviour
         if (other.gameObject.tag == "Enemy" && target)
         {    
                 target = null;
-            Archer.SetBool("Hastarget", false);
-            
+            Archer.SetBool("Hastarget", false);  
         }
-
     }
 
 
     IEnumerator Fire()
-    {
-        
+    {  
         if(Shoot == true) {
-
             //target.GetComponent<Enemy1>().Damage(Dam:AttackPower) ;
             GameObject ArrowObj = (GameObject)Instantiate(ArrowPrefab, FirePointPos.position, FirePointPos.rotation);
             Arrow arrow = ArrowObj.GetComponent<Arrow>();
-           
-
             if (arrow != null)
             {
                 arrow.Seek(target.transform);
             }
-            
             yield return new WaitForSeconds(AttackSpeed);
 
             Shoot = false;
