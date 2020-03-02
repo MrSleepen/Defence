@@ -13,7 +13,7 @@ public class ArcherTower : MonoBehaviour
     public Transform FirePointPos;
     public GameObject ArcherTowerPanel;
     public bool Visible;
-    private int TowerLevel;
+    private int TowerLevel = 1;
     private int SpeedLevel;
     private int Cost;
     public float CritChance;
@@ -21,6 +21,11 @@ public class ArcherTower : MonoBehaviour
     public BoxCollider Range;
     private float RangeSize = 5f;
     private int crithit = 1;
+
+    private int speed = 1;
+    private int attack = 1;
+    private int range = 1;
+    private int crit = 1;
 
 
 
@@ -37,6 +42,8 @@ public class ArcherTower : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+      
+
         Range.size = new Vector3( RangeSize, RangeSize, RangeSize);
        
         FaceThatWay();
@@ -128,33 +135,56 @@ public class ArcherTower : MonoBehaviour
 
     public void LevelSpeed()
     {
-        if(Cost <= PlayerPrefs.GetInt("CurMoneyt1"))
+        if(Cost <= PlayerPrefs.GetInt("CurMoneyt1") && TowerLevel <= 40 && speed <=20)
         {
             AttackSpeed -= .1f;
+            speed +=1 ;
+            TowerLevel++;
+        }
+        else
+        {
+            Debug.Log("MaxLevel");
         }
     }
    
     public void LevelRange()
     {
-        if (Cost <= PlayerPrefs.GetInt("CurMoneyt1"))
+        if (Cost <= PlayerPrefs.GetInt("CurMoneyt1") && TowerLevel <= 40 && range <= 20)
         {
-
+            range += 1;
             RangeSize += .5f;
+            TowerLevel++;
+        }
+        else
+        {
+            Debug.Log("MaxLevel");
         }
     }
 
     public void LevelAttack()
     {
-        if (Cost <= PlayerPrefs.GetInt("CurMoneyt1"))
+        if (Cost <= PlayerPrefs.GetInt("CurMoneyt1") && TowerLevel <= 40 && attack <= 20)
         {
             AttackPowert += 1;
+            attack +=1 ;
+            TowerLevel++;
+        }
+        else
+        {
+            Debug.Log("MaxLevel");
         }
     }
     public void LevelCrit()
     {
-        if (Cost <= PlayerPrefs.GetInt("CurMoneyt1"))
+        if (Cost <= PlayerPrefs.GetInt("CurMoneyt1") && TowerLevel <=40 && crit <= 20)
         {
             CritChance += 1;
+            crit +=1 ;
+            TowerLevel++;
+        }
+        else
+        {
+            Debug.Log("MaxLevel");
         }
     }
 
