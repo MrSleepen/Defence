@@ -6,22 +6,27 @@ public class Arrow : MonoBehaviour
 {
     private Transform target;
     public float speed = 1;
-    public int AttackPower = 3;
+    public int AttackPower;
     public GameObject ArrowPrefab;
-    private bool Set = false;
-   
     
+    private bool Set = false;
+    private int Cost;
+    
+    public float CritChance;
+
+
     public void Seek(Transform _target)
     {
         target = _target;
     }
     void Update()
     {
-     
-      
 
-       
-        if(target == null)
+
+        
+
+
+        if (target == null)
         {
             
             Destroy(ArrowPrefab);
@@ -52,9 +57,14 @@ public class Arrow : MonoBehaviour
 
 
     }
-    
-            
 
-   
+    public void LevelCritChance()
+    {
+        if (Cost <= PlayerPrefs.GetInt("CurMoneyt1"))
+        {
+            CritChance += 1;
+        }
+    }
+  
 
 }

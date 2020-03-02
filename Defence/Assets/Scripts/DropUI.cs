@@ -16,6 +16,7 @@ public class DropUI : MonoBehaviour
     private bool dragging;
     public bool playableArea = false;
     private int Selectedtower;
+    private int Cost;
     
     Vector3 mousePos;
 
@@ -43,7 +44,7 @@ public class DropUI : MonoBehaviour
         ///
 
       
-
+        
 
         if (dragging)
             {
@@ -73,27 +74,33 @@ public class DropUI : MonoBehaviour
                 if (go.gameObject.name == "ArcherTower")
                 {
                     Selectedtower = 0;
+                    Cost = 100;
                     
                 }
                 if (go.gameObject.name == "RockTower")
                 {
                    Selectedtower = 1;
+                    Cost = 150;
                 }
                 if (go.gameObject.name == "FireTower")
                 {
                     Selectedtower = 2;
+                    Cost = 200;
                 }
                 if (go.gameObject.name == "IceTower")
                 {
                     Selectedtower = 3;
+                    Cost = 250;
                 }
                 if (go.gameObject.name == "LightTower")
                 {
                     Selectedtower = 4;
+                    Cost = 400;
                 }
                 if (go.gameObject.name == "DarkTower")
                 {
                     Selectedtower = 5;
+                    Cost = 500;
                 }
             }
         }
@@ -126,13 +133,17 @@ public class DropUI : MonoBehaviour
                 wordPos.z = 0;
             }
           
-            
+            if(Cost <= PlayerPrefs.GetInt("CurMoneyt1"))
+            {
                 Instantiate(Tower[Selectedtower], wordPos, Quaternion.identity);
-         
-            
-
-            TowerPanel.transform.position = ReappearPanel.transform.position;
-           
+                TowerPanel.transform.position = ReappearPanel.transform.position;
+                PlayerPrefs.SetInt("CurMoneyt1", PlayerPrefs.GetInt("CurMoneyt1") - Cost);
+            }
+            else
+            {
+                TowerPanel.transform.position = ReappearPanel.transform.position;
+            }
+                 
         }
     }
     public void PrintName(GameObject go)

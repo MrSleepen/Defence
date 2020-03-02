@@ -22,6 +22,7 @@ public class SpawnEnemy : MonoBehaviour
     public GameObject AmountText;
     public Text AmountOfEnemys;
     public Text AmountOfGold;
+    public Text RoundNum;
     public bool DoOnce;
 
 
@@ -36,6 +37,7 @@ public class SpawnEnemy : MonoBehaviour
     void FixedUpdate()
     {
         GoldAmount();
+        RoundDisplay();
         MaxSpawn = 10 * PlayerPrefs.GetInt("RoundNum");
         RandomNumber = Random.Range(1, openCreatures + 1);
         AmountOfEnemys.text = MaxSpawn.ToString();
@@ -176,5 +178,9 @@ public class SpawnEnemy : MonoBehaviour
     public void GoldAmount()
     {
         AmountOfGold.text = "Gold: " + PlayerPrefs.GetInt("CurMoneyt1").ToString();
+    }
+    public void RoundDisplay()
+    {
+        RoundNum.text = "Round: " + PlayerPrefs.GetInt("RoundNum").ToString();
     }
 }

@@ -13,21 +13,22 @@ public class Enemy1 : MonoBehaviour
     private bool AttackAnimating;
     public int CreatureWorth;
     public int IndependentVariable;
-    
-    
+
+
 
     // Start is called before the first frame update
 
-    void Start()
-    {
-        Health = PlayerPrefs.GetInt("RoundNum") * 4;
-        Attack = PlayerPrefs.GetInt("RoundNum") / 4;
+    void Awake() { 
+       // Health = PlayerPrefs.GetInt("RoundNum") * 4;
+       // Attack = PlayerPrefs.GetInt("RoundNum") / 4;
     }
+   
     // Update is called once per frame
     void Update()
       
     {
         
+
         CreatureWorth = 10 + PlayerPrefs.GetInt("RoundNum") * IndependentVariable;
 
             if (Health <= 0)

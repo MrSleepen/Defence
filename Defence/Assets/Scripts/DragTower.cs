@@ -7,18 +7,13 @@ public class DragTower : MonoBehaviour
 
    
     public Transform[] SnapLoc1;
-
     public int ChosenSnapPoint;
-
     private Vector2 InitPos;
-
     private Vector2 MousePos;
-
     private float deltax, deltay;
-
     public static bool Locked;
-
     public int test = 1;
+
 
     void Start()
     {
